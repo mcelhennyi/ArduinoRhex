@@ -6,6 +6,13 @@ Adafruit_GPS GPS(&mySerial);
 String NMEA1;
 String NMEA2;
 char c;
+String lattitude;
+String longitude;
+String knots;
+String altitude;
+String fixQualAV;
+String fixQual01;
+String satLock;
 
 void setup() 
 {
@@ -25,8 +32,20 @@ void loop()
   // put your main code here, to run repeatedly:
   readGPS();
   
-  delay(2000);
+//  delay(2000);
   
+}
+
+void parseGPS()
+{
+  
+  while(
+    if(string.indexOf(val) != null)
+      {
+        index = string.indexOf(",")
+      }
+    
+  while(
 }
 
 void readGPS()
