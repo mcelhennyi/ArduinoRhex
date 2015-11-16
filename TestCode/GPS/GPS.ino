@@ -21,7 +21,7 @@ int indexga[13];
 void setup() 
 {
   // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(9600);
   GPS.begin(9600);
   
   GPS.sendCommand("$PGCMD, 33, 0*6D");//Turn off antenna update data
@@ -33,19 +33,19 @@ void setup()
 
 void loop() 
 {
-  // put your main code here, to run repeatedly:
   readGPS();
   parseString(NMEA1);
-//  parseString(NMEA2);
   Serial.println(time);
 //  Serial.println(fixQualAV);
   Serial.println(lattitude);
   Serial.println(longitude);
-  Serial.println("Knts");
+//  Serial.println("Knts");
   Serial.println(knots);
 //  Serial.println(date);
-  Serial.println(fixQual01);
+//  Serial.println(fixQual01);
   Serial.println(altitude);
+  
+  
 }
 
 //This will take A NMEA string and return values of concern:
