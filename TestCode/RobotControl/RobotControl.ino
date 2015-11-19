@@ -1,7 +1,6 @@
 #include <Servo.h>
 #include <SPI.h>
 
-//Accel 
 //Assign the Chip Select signal to pin 10.
 int CS=10;
 int button = 9;
@@ -60,6 +59,7 @@ int ultrasonic2Duration;
 #define TURN_LEFT       1
 
 int state = DRIVE_FORWARD; // 0 = drive forward (DEFAULT), 1 = turn left
+
 void stateMachine()
 {
     if(state == DRIVE_FORWARD) 
@@ -231,8 +231,6 @@ void setup()
 
 void loop()
 {
-
-
       //Reading 6 bytes of data starting at register DATAX0 will retrieve the x,y and z acceleration values from the ADXL345.
       //The results of the read operation will get stored to the values[] buffer.
       readRegister(DATAX0, 6, values);
@@ -246,15 +244,16 @@ void loop()
       z = ((int)values[5]<<8)|(int)values[4];
       
       //Print the results to the terminal.
-    //  Serial.print(x, DEC);
-    //  Serial.print(',');
-    //  Serial.print(y, DEC);
-    //  Serial.print(',');
-    //  Serial.println(z, DEC); 
+      //  Serial.print(x, DEC);
+      //  Serial.print(',');
+      //  Serial.print(y, DEC);
+      //  Serial.print(',');
+      //  Serial.println(z, DEC); 
       if(digitalRead(button) == HIGH)
-        setBase();  
+      setBase();  
       delay(100); 
-          debugOutput(); // prints debugging messages to console 
+      
+      debugOutput(); // prints debugging messages to console 
    
       switch ( cmd ) {
       case 1:
@@ -291,7 +290,10 @@ void loop()
           rightMotor2.write(100); 
           break;
            case 5: //stop
-           //code to cut servos, no movement
+          leftMotor1.write(0);
+          leftMotor2.write(0); 
+          rightMotor1.write(0); 
+          rightMotor2.write(0);
            break;
            case 6: //execute routine1
            selfDrive(); 
